@@ -9,9 +9,9 @@
             font-family: Arial;
             height: 100vh;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
+            overflow: hidden;
         }
 
-        /* After login */
         .pink-bg {
             background: #ffe4ec !important;
         }
@@ -26,57 +26,57 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
 
+        h2 {
+            color: #6a11cb;
+        }
+
         input {
             width: 90%;
             padding: 12px;
             margin: 10px;
             border-radius: 8px;
             border: 2px solid #ccc;
+            outline: none;
         }
 
+        /* ✅ FIXED BUTTON STYLE */
         button {
-            padding: 10px 15px;
+            padding: 10px 20px;
             margin-top: 10px;
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            width: auto;
-        }
-
-        #clickBtn {
-            width: 90px;
-        }
-
-        #surpriseBtn {
-            width: 140px;
+            width: auto;              /* ❌ removed stretch */
+            display: inline-block;    /* ❌ prevents full width */
         }
 
         .hidden {
             display: none;
         }
-        .temp{
-            text-align:center;
-        }
 
         img {
-            width: 400px;
-            height:600px;
-            margin-top: 15px;
+            width: 200px;
+            margin-top: 20px;
             border-radius: 10px;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
 
-        #extraText {
-            margin-top: 15px;
+        #welcomeBox {
+            text-align: center;
         }
 
-        /* 💖 Hearts */
+        #extraText {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* 💖 hearts */
         #hearts {
-            display: none; /* hidden before login */
+            display: none;
         }
 
         .heart {
@@ -103,7 +103,6 @@
 
 
 
-<!-- Login -->
 <div class="login-box" id="loginBox">
     <h2>Login</h2>
 
@@ -114,24 +113,21 @@
 
     <p id="error" style="color:red;"></p>
 </div>
-
-<!-- Welcome -->
- <!-- Hearts -->
+    
 <div id="hearts"></div>
 <div id="welcomeBox" class="hidden">
-    <h2 id="welcomeText" class="text></h2>
+    <h2 id="welcomeText"></h2>
 
     <img src="photo.jpeg"><br>
 
-    <button id="clickBtn" onclick="content()" class="temp">Click Me</button>
+    <!-- ✅ BUTTON stays normal -->
+    <button onclick="content()">Click Me</button>
 
+    <!-- ✅ CONTENT shows here -->
     <p id="extraText"></p>
 </div>
 
 <script>
-let heartInterval;
-
-/* LOGIN */
 function login() {
     let user = document.getElementById("username").value.trim();
     let pass = document.getElementById("password").value.trim();
@@ -142,51 +138,45 @@ function login() {
         document.getElementById("welcomeBox").classList.remove("hidden");
 
         document.body.classList.add("pink-bg");
+        document.getElementById("hearts").style.display = "block";
 
         document.getElementById("welcomeText").innerHTML =
         "Wish you many more happy returns of the day " +
         "<span style='color:#ff4081; font-weight:bold;'>Siva Charitha</span> 🎉🎂";
-
-        // 💖 show hearts only after login
-        document.getElementById("hearts").style.display = "block";
-        startHearts();
 
     } else {
         document.getElementById("error").innerText = "Invalid credentials!";
     }
 }
 
-/* HEARTS START */
-function startHearts() {
-    heartInterval = setInterval(() => {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerText = "💖";
-
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (12 + Math.random() * 20) + "px";
-
-        document.getElementById("hearts").appendChild(heart);
-
-        setTimeout(() => heart.remove(), 5000);
-    }, 300);
-}
-
-/* CLICK ME */
 function content() {
-    document.getElementById("clickBtn").style.display = "none";
-
     document.getElementById("extraText").innerHTML =
-        "Can you be friend for days: " +
+        "I Love four days: " +
         "<span style='color:pink'>spring</span>, " +
         "<span style='color:orange'>summer</span>, " +
         "<span style='color:brown'>autumn</span>, " +
         "<span style='color:blue'>winter</span><br>" +
 
-        "Can you be friend for three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
-        "Can you be friend for two days: <span style='color:green'>day, night</span><br>" +
-        "Can you be friend for one day: <span style='color:#ff4081'>Everyday</span> ❤️";
+        "I Love three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
+        "I Love two days: <span style='color:green'>day, night</span><br>" +
+        "I Love one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
+
+// 💖 hearts animation
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 300);
 </script>
 
 </body>
