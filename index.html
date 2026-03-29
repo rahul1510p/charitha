@@ -116,7 +116,7 @@
     <button id="clickBtn" onclick="content() style="width:80px">Click Me</button>
 
     <p id="extraText"></p>
-    <button onclick="some()" id="clickButton" style="width:80px">Surprise for You</button>
+    <button onclick="some()" id="clickButton" style="width:120px;">Surprise for You</button>
 </div>
 
 <script>
@@ -155,10 +155,14 @@ function content() {
         "I Love You two days: <span style='color:green'>day, night</span><br>" +
         "I Love You one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
-    function some(){
-        let change = document.getElementById("clickButton");
-        change.img("photo.jpeg");
-    }
+   function some() {
+    let img = document.createElement("img");
+    img.src = "photo.jpeg";
+    img.style.width = "200px";
+    img.style.marginTop = "10px";
+
+    document.getElementById("welcomeBox").appendChild(img);
+}
 
 // 💖 Floating hearts
 setInterval(() => {
