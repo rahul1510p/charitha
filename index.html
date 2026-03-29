@@ -97,8 +97,7 @@
 
 <body>
 
-<!-- Hearts -->
-<div id="hearts"></div>
+
 
 <!-- Login -->
 <div class="login-box" id="loginBox">
@@ -113,6 +112,8 @@
 </div>
 
 <!-- Welcome -->
+ <!-- Hearts -->
+<div id="hearts"></div>
 <div id="welcomeBox" class="hidden">
     <h2 id="welcomeText"></h2>
 
@@ -121,8 +122,6 @@
     <button id="clickBtn" onclick="content()">Click Me</button>
 
     <p id="extraText"></p>
-
-    <button id="surpriseBtn" class="hidden" onclick="showImage()">Surprise for You</button>
 </div>
 
 <script>
@@ -174,23 +173,15 @@ function content() {
     document.getElementById("clickBtn").style.display = "none";
 
     document.getElementById("extraText").innerHTML =
-        "I Love four days: " +
+        "Can you be friend for days: " +
         "<span style='color:pink'>spring</span>, " +
         "<span style='color:orange'>summer</span>, " +
         "<span style='color:brown'>autumn</span>, " +
         "<span style='color:blue'>winter</span><br>" +
 
-        "I Love You three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
-        "I Love You two days: <span style='color:green'>day, night</span><br>" +
-        "I Love You one day: <span style='color:#ff4081'>Everyday</span> ❤️";
-}
-
-/* SURPRISE */
-function showImage() {
-    document.getElementById("surpriseBtn").style.display = "none";
-
-    let img = document.createElement("img");
-    img.src = "photo.jpeg";
+        "Can you be friend for three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
+        "Can you be friend for two days: <span style='color:green'>day, night</span><br>" +
+        "Can you be friend for one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
 </script>
 
