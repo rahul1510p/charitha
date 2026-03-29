@@ -56,9 +56,13 @@
         .hidden {
             display: none;
         }
+        .temp{
+            text-align:center;
+        }
 
         img {
-            width: 200px;
+            width: 400px;
+            height:600px;
             margin-top: 15px;
             border-radius: 10px;
             display: block;
@@ -115,11 +119,11 @@
  <!-- Hearts -->
 <div id="hearts"></div>
 <div id="welcomeBox" class="hidden">
-    <h2 id="welcomeText"></h2>
+    <h2 id="welcomeText" class="text></h2>
 
     <img src="photo.jpeg"><br>
 
-    <button id="clickBtn" onclick="content()">Click Me</button>
+    <button id="clickBtn" onclick="content()" class="temp">Click Me</button>
 
     <p id="extraText"></p>
 </div>
