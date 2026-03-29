@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #6a11cb;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 5px #6a11cb;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #welcomeText {
+            font-size: 22px;
+        }
+
+        #extraText {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box" id="loginBox">
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Enter Username"><br>
+    <input type="password" id="password" placeholder="Enter Password"><br>
+
+    <button type="button" onclick="login()">Login</button>
+
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div id="welcomeBox" class="hidden">
+    <h2 id="welcomeText"></h2>
+
+    <img src="photo.jpeg"><br><br>
+
+    <button onclick="content()">Click Me</button>
+
+    <p id="extraText"></p>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    if (user === "sivacharitha" && pass === "30032004") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("welcomeBox").classList.remove("hidden");
+
+        document.getElementById("welcomeText").innerHTML =
+        "Wish you many more happy returns of the day " +
+        "<span style='color:#ff4081; font-weight:bold;'>Siva Charitha</span> 🎉🎂";
+    } else {
+        document.getElementById("error").innerText = "Invalid credentials!";
+    }
+}
+
+function content() {
+    document.getElementById("extraText").innerHTML =
+        "I Love four days: " +
+        "<span style='color:pink'>spring</span>, " +
+        "<span style='color:orange'>summer</span>, " +
+        "<span style='color:brown'>autumn</span>, " +
+        "<span style='color:blue'>winter</span><br>" +
+
+        "I Love three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
+        "I Love two days: <span style='color:green'>day, night</span><br>" +
+        "I Love one day: <span style='color:#ff4081'>Everyday</span> ❤️";
+}
+</script>
+
+</body>
+</html>
