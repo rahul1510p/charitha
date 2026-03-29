@@ -86,7 +86,7 @@
     <img src="photo.jpeg"><br>
 
     <!-- ✅ BUTTON stays same -->
-    <button onclick="content()">Click Me</button>
+    <button id="clickBtn" onclick="content()">Click Me</button>
 
     <!-- ✅ TEXT BELOW BUTTON -->
     <p id="extraText"></p>
@@ -115,6 +115,7 @@ function login() {
 
 /* ✅ FIXED FUNCTION */
 function content() {
+    document.getElementById("clickBtn").style.display = "none";
     let text = document.getElementById("extraText");
 
     text.style.display = "block"; // show text
