@@ -12,7 +12,6 @@
             overflow: hidden;
         }
 
-        /* After login pink background */
         .pink-bg {
             background: #ffe4ec !important;
         }
@@ -40,15 +39,17 @@
             outline: none;
         }
 
+        /* ✅ FIXED BUTTON STYLE */
         button {
-            width: 95%;
-            padding: 12px;
+            padding: 10px 20px;
             margin-top: 10px;
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            width: auto;              /* ❌ removed stretch */
+            display: inline-block;    /* ❌ prevents full width */
         }
 
         .hidden {
@@ -59,6 +60,9 @@
             width: 200px;
             margin-top: 20px;
             border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #welcomeBox {
@@ -67,9 +71,14 @@
 
         #extraText {
             margin-top: 15px;
+            font-size: 16px;
         }
 
-        /* 💖 Hearts */
+        /* 💖 hearts */
+        #hearts {
+            display: none;
+        }
+
         .heart {
             position: absolute;
             color: #ff4d88;
@@ -92,10 +101,8 @@
 
 <body>
 
-<!-- 💖 Hearts container -->
 <div id="hearts"></div>
 
-<!-- Login -->
 <div class="login-box" id="loginBox">
     <h2>Login</h2>
 
@@ -107,14 +114,15 @@
     <p id="error" style="color:red;"></p>
 </div>
 
-<!-- Welcome -->
 <div id="welcomeBox" class="hidden">
     <h2 id="welcomeText"></h2>
 
-    <img src="photo.jpeg"><br><br>
+    <img src="photo.jpeg"><br>
 
+    <!-- ✅ BUTTON stays normal -->
     <button onclick="content()">Click Me</button>
 
+    <!-- ✅ CONTENT shows here -->
     <p id="extraText"></p>
 </div>
 
@@ -128,8 +136,8 @@ function login() {
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("welcomeBox").classList.remove("hidden");
 
-        // 💗 Change background
         document.body.classList.add("pink-bg");
+        document.getElementById("hearts").style.display = "block";
 
         document.getElementById("welcomeText").innerHTML =
         "Wish you many more happy returns of the day " +
@@ -140,7 +148,6 @@ function login() {
     }
 }
 
-// Button content
 function content() {
     document.getElementById("extraText").innerHTML =
         "I Love four days: " +
@@ -154,7 +161,7 @@ function content() {
         "I Love one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
 
-// 💖 Floating hearts
+// 💖 hearts animation
 setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
