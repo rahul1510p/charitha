@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Love Login Page</title>
+
     <style>
         body {
             margin: 0;
             font-family: Arial;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            overflow: hidden;
+        }
+
+        /* After login pink background */
+        .pink-bg {
+            background: #ffe4ec !important;
         }
 
         .login-box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
             width: 320px;
+            padding: 25px;
+            background: white;
+            margin: 100px auto;
+            border-radius: 15px;
             text-align: center;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
@@ -33,12 +38,6 @@
             border-radius: 8px;
             border: 2px solid #ccc;
             outline: none;
-            transition: 0.3s;
-        }
-
-        input:focus {
-            border-color: #6a11cb;
-            box-shadow: 0 0 5px #6a11cb;
         }
 
         button {
@@ -49,13 +48,7 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.05);
         }
 
         .hidden {
@@ -64,34 +57,57 @@
 
         img {
             width: 200px;
-            border-radius: 10px;
             margin-top: 20px;
+            border-radius: 10px;
         }
 
-        #welcomeText {
-            font-size: 22px;
+        #welcomeBox {
+            text-align: center;
         }
 
         #extraText {
             margin-top: 15px;
-            font-size: 16px;
+        }
+
+        /* 💖 Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d88;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
 
+<!-- 💖 Hearts container -->
+<div id="hearts"></div>
+
+<!-- Login -->
 <div class="login-box" id="loginBox">
     <h2>Login</h2>
 
-    <input type="text" id="username" placeholder="Enter Username"><br>
-    <input type="password" id="password" placeholder="Enter Password"><br>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
 
     <button type="button" onclick="login()">Login</button>
 
     <p id="error" style="color:red;"></p>
 </div>
 
+<!-- Welcome -->
 <div id="welcomeBox" class="hidden">
     <h2 id="welcomeText"></h2>
 
@@ -108,17 +124,23 @@ function login() {
     let pass = document.getElementById("password").value.trim();
 
     if (user === "sivacharitha" && pass === "30032004") {
+
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("welcomeBox").classList.remove("hidden");
+
+        // 💗 Change background
+        document.body.classList.add("pink-bg");
 
         document.getElementById("welcomeText").innerHTML =
         "Wish you many more happy returns of the day " +
         "<span style='color:#ff4081; font-weight:bold;'>Siva Charitha</span> 🎉🎂";
+
     } else {
         document.getElementById("error").innerText = "Invalid credentials!";
     }
 }
 
+// Button content
 function content() {
     document.getElementById("extraText").innerHTML =
         "I Love four days: " +
@@ -131,6 +153,22 @@ function content() {
         "I Love two days: <span style='color:green'>day, night</span><br>" +
         "I Love one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
+
+// 💖 Floating hearts
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 300);
 </script>
 
 </body>
