@@ -9,7 +9,6 @@
             font-family: Arial;
             height: 100vh;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
-            overflow: hidden;
         }
 
         .pink-bg {
@@ -26,20 +25,15 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
 
-        h2 {
-            color: #6a11cb;
-        }
-
         input {
             width: 90%;
             padding: 12px;
             margin: 10px;
             border-radius: 8px;
             border: 2px solid #ccc;
-            outline: none;
         }
 
-        /* ✅ FIXED BUTTON STYLE */
+        /* ✅ BUTTON FIX */
         button {
             padding: 10px 20px;
             margin-top: 10px;
@@ -48,8 +42,8 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            width: auto;              /* ❌ removed stretch */
-            display: inline-block;    /* ❌ prevents full width */
+            width: auto;
+            display: inline-block;
         }
 
         .hidden {
@@ -65,43 +59,15 @@
             margin-right: auto;
         }
 
-        #welcomeBox {
-            text-align: center;
-        }
-
         #extraText {
             margin-top: 15px;
             font-size: 16px;
-        }
-
-        /* 💖 hearts */
-        #hearts {
-            display: none;
-        }
-
-        .heart {
-            position: absolute;
-            color: #ff4d88;
-            font-size: 20px;
-            animation: float 5s linear infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
+            display: none; /* ✅ initially hidden */
         }
     </style>
 </head>
 
 <body>
-
-<div id="hearts"></div>
 
 <div class="login-box" id="loginBox">
     <h2>Login</h2>
@@ -119,10 +85,10 @@
 
     <img src="photo.jpeg"><br>
 
-    <!-- ✅ BUTTON stays normal -->
+    <!-- ✅ BUTTON stays same -->
     <button onclick="content()">Click Me</button>
 
-    <!-- ✅ CONTENT shows here -->
+    <!-- ✅ TEXT BELOW BUTTON -->
     <p id="extraText"></p>
 </div>
 
@@ -137,7 +103,6 @@ function login() {
         document.getElementById("welcomeBox").classList.remove("hidden");
 
         document.body.classList.add("pink-bg");
-        document.getElementById("hearts").style.display = "block";
 
         document.getElementById("welcomeText").innerHTML =
         "Wish you many more happy returns of the day " +
@@ -148,10 +113,15 @@ function login() {
     }
 }
 
+/* ✅ FIXED FUNCTION */
 function content() {
-    document.getElementById("extraText").innerHTML =
+    let text = document.getElementById("extraText");
+
+    text.style.display = "block"; // show text
+
+    text.innerHTML =
         "I Love four days: " +
-        "<span style='color:green'>spring</span>, " +
+        "<span style='color:pink'>spring</span>, " +
         "<span style='color:orange'>summer</span>, " +
         "<span style='color:brown'>autumn</span>, " +
         "<span style='color:blue'>winter</span><br>" +
@@ -160,22 +130,6 @@ function content() {
         "I Love two days: <span style='color:green'>day, night</span><br>" +
         "I Love one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 }
-
-// 💖 hearts animation
-setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "💖";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (12 + Math.random() * 20) + "px";
-
-    document.getElementById("hearts").appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}, 300);
 </script>
 
 </body>
