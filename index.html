@@ -11,7 +11,7 @@
             background: linear-gradient(135deg, #6a11cb, #2575fc);
         }
 
-        /* After login pink background */
+        /* After login */
         .pink-bg {
             background: #ffe4ec !important;
         }
@@ -45,7 +45,6 @@
             width: auto;
         }
 
-        /* Small buttons */
         #clickBtn {
             width: 90px;
         }
@@ -69,12 +68,37 @@
 
         #extraText {
             margin-top: 15px;
-            font-size: 16px;
+        }
+
+        /* 💖 Hearts */
+        #hearts {
+            display: none; /* hidden before login */
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4d88;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
+
+<!-- Hearts -->
+<div id="hearts"></div>
 
 <!-- Login -->
 <div class="login-box" id="loginBox">
@@ -94,17 +118,17 @@
 
     <img src="photo.jpeg"><br>
 
-    <!-- Click Me button -->
     <button id="clickBtn" onclick="content()">Click Me</button>
 
-    <!-- Text -->
     <p id="extraText"></p>
 
-    <!-- Surprise button (hidden initially) -->
     <button id="surpriseBtn" class="hidden" onclick="showImage()">Surprise for You</button>
 </div>
 
 <script>
+let heartInterval;
+
+/* LOGIN */
 function login() {
     let user = document.getElementById("username").value.trim();
     let pass = document.getElementById("password").value.trim();
@@ -120,31 +144,50 @@ function login() {
         "Wish you many more happy returns of the day " +
         "<span style='color:#ff4081; font-weight:bold;'>Siva Charitha</span> 🎉🎂";
 
+        // 💖 show hearts only after login
+        document.getElementById("hearts").style.display = "block";
+        startHearts();
+
     } else {
         document.getElementById("error").innerText = "Invalid credentials!";
     }
 }
 
-/* Click Me */
+/* HEARTS START */
+function startHearts() {
+    heartInterval = setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (12 + Math.random() * 20) + "px";
+
+        document.getElementById("hearts").appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+
+/* CLICK ME */
 function content() {
     document.getElementById("clickBtn").style.display = "none";
 
     document.getElementById("extraText").innerHTML =
-        "Can you be friend for four days: " +
+        "I Love four days: " +
         "<span style='color:pink'>spring</span>, " +
         "<span style='color:orange'>summer</span>, " +
         "<span style='color:brown'>autumn</span>, " +
         "<span style='color:blue'>winter</span><br>" +
 
-        "Can you be friend for three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
-        "Can you be friend for two days: <span style='color:green'>day, night</span><br>" +
-        "Can you be friend for one day: <span style='color:#ff4081'>Everyday</span> ❤️";
+        "I Love You three days: <span style='color:purple'>yesterday, today, tomorrow</span><br>" +
+        "I Love You two days: <span style='color:green'>day, night</span><br>" +
+        "I Love You one day: <span style='color:#ff4081'>Everyday</span> ❤️";
 
-    /* Show surprise button */
     document.getElementById("surpriseBtn").classList.remove("hidden");
 }
 
-/* Surprise */
+/* SURPRISE */
 function showImage() {
     document.getElementById("surpriseBtn").style.display = "none";
 
